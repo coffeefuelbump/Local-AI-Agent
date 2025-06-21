@@ -26,7 +26,7 @@ npm start
 
 # Step 2: Create Your Zapier AI Agent
 
-1. In your Zapier dashboard, click **Create → AI Agent**  
+1. Go to [Zapier Agents](https://zapier.com/agents)  
 2. Enter the following **Prompt**:
 
    > **You will receive an Agent Input Message, follow its command.**  
