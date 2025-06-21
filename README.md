@@ -11,7 +11,7 @@ A React-based local AI agent interface with an animated robot icon and multi-lin
 
 To get started, watch this quick walkthrough:
 
-👉 https://www.youtube.com/@Corbin_Brown
+👉 https://youtu.be/CuHwPZ1X2hc
 
 ## 🚀 Clone & Run
 
