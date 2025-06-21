@@ -49,7 +49,7 @@ npm start
    - Copy the generated webhook URL.
 
 2. **Action**  
-   - App & Event: **Agents → Run Agent**  
+   - Action: **Zapier Agent**  
    - In the “Set up action” section, map the incoming payload (e.g. `{{command}}`) into the Agent’s **Agent Input Message** field.
 
 3. Turn your Zap **ON**.
