@@ -44,7 +44,7 @@ function App() {
     setHistory(newHistory);
     localStorage.setItem('commandHistory', JSON.stringify(newHistory));
 
-    fetch('https://hooks.zapier.com/hooks/catch/14017241/uolkqxh/', {
+    fetch('https://hooks.zapier.com/hooks/catch/14017241/uolw13i/', {
       method: 'POST', mode: 'no-cors',
       body: JSON.stringify({ command: text })
     }).catch(console.error);
