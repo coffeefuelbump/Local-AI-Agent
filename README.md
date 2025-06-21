@@ -3,6 +3,7 @@
 A React-based local AI agent interface with an animated robot icon and multi-line command input. Commands are sent to a Zapier webhook, enabling seamless automation and integration with over 7,000 apps.
 
 # Step 1: Clone the Repo
+📥 Learn how to easily download a GitHub repository in just 2 minutes with this guide: [https://youtu.be/m0wi6zf21FU](https://youtu.be/m0wi6zf21FU)
 
 <img width="1156" alt="Local Agent" src="https://github.com/user-attachments/assets/bd345fcc-8879-47e4-a60f-ab67cf61c05a" />
 
