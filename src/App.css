@@ -53,7 +53,6 @@ body, html, #root {
   animation: fadeInOut 2s ease forwards;
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
-/* check icon inside bubble */
 .speech-bubble .check-icon {
   color: #FE4F00;
   margin-right: 6px;
@@ -145,6 +144,69 @@ body, html, #root {
   background-color: #CC4500;
 }
 
+/* ----- Command History ----- */
+.history-container {
+  width: 90%;
+  max-width: 800px;
+  margin-bottom: 1.5rem;
+}
+.history-container h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  color: #a4a4a8;
+}
+.history-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.history-item {
+  display: flex;
+  align-items: center;
+  background: #40414f;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 6px;
+}
+.history-timestamp {
+  font-size: 0.75rem;
+  color: #6b6b6b;
+  margin-right: 12px;
+  white-space: nowrap;
+}
+.history-command {
+  flex: 1;
+  color: #e5e5e5;
+  word-break: break-all;
+}
+
+/* ----- Copy button & animation ----- */
+.copy-btn {
+  background: transparent;
+  border: none;
+  color: #e5e5e5;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-left: 12px;
+  padding: 4px;
+  transition: color 0.2s ease;
+}
+.copy-btn:hover {
+  color: #FE4F00;
+}
+.copy-btn.copied {
+  color: #FE4F00;
+  animation: pop 0.3s ease;
+}
+.copy-btn.copied i {
+  /* icon will scale with the parent */
+}
+@keyframes pop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
 /* ----- Footer ----- */
 .footer {
   position: absolute;
@@ -178,5 +240,12 @@ body, html, #root {
   }
   .send-btn {
     align-self: flex-end;
+  }
+  .history-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .copy-btn {
+    margin: 6px 0 0 0;
   }
 }

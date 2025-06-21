@@ -1,5 +1,5 @@
 // src/App.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './App.css';
 
@@ -20,28 +20,45 @@ function App() {
   const [command, setCommand] = useState('');
   const [shaking, setShaking] = useState(false);
   const [bubble, setBubble] = useState({ text: '', show: false });
+  const [history, setHistory] = useState([]);
+  const [copiedIndex, setCopiedIndex] = useState(null);
+
+  useEffect(() => {
+    const stored = localStorage.getItem('commandHistory');
+    if (stored) setHistory(JSON.parse(stored));
+  }, []);
 
   const handleSend = () => {
     const text = command.trim();
     if (!text) return;
 
-    // pick a random funny message
     const rand = MESSAGES[Math.floor(Math.random() * MESSAGES.length)];
     setBubble({ text: rand, show: true });
     setTimeout(() => setBubble(b => ({ ...b, show: false })), 2000);
 
-    // shake animation
     setShaking(true);
     setTimeout(() => setShaking(false), 500);
 
-    // send to Zapier (replace URL with your webhook)
+    const entry = { command: text, timestamp: new Date().toISOString() };
+    const newHistory = [entry, ...history];
+    setHistory(newHistory);
+    localStorage.setItem('commandHistory', JSON.stringify(newHistory));
+
     fetch('https://hooks.zapier.com/hooks/catch/14017241/uolkqxh/', {
-      method: 'POST',
-      mode: 'no-cors',
+      method: 'POST', mode: 'no-cors',
       body: JSON.stringify({ command: text })
     }).catch(console.error);
 
     setCommand('');
+  };
+
+  const handleCopy = (text, idx) => {
+    navigator.clipboard.writeText(text)
+      .then(() => {
+        setCopiedIndex(idx);
+        setTimeout(() => setCopiedIndex(null), 1500);
+      })
+      .catch(console.error);
   };
 
   return (
@@ -71,6 +88,27 @@ function App() {
         <button className="send-btn" onClick={handleSend}>
           <i className="fas fa-arrow-up"></i>
         </button>
+      </div>
+
+      <div className="history-container">
+        <h2>Command History</h2>
+        <ul className="history-list">
+          {history.map((item, idx) => (
+            <li key={idx} className="history-item">
+              <span className="history-timestamp">
+                {new Date(item.timestamp).toLocaleString()}
+              </span>
+              <span className="history-command">{item.command}</span>
+              <button
+                className={`copy-btn${copiedIndex === idx ? ' copied' : ''}`}
+                onClick={() => handleCopy(item.command, idx)}
+                title="Copy command"
+              >
+                <i className={`fas ${copiedIndex === idx ? 'fa-check' : 'fa-copy'}`}></i>
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
 
       <footer className="footer">
